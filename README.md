@@ -4,7 +4,7 @@ An NLP-based customer support ticket classifier that automatically categorizes c
 
 ## Overview
 
-This project uses Natural Language Processing (NLP) and Logistic Regression to classify customer support tickets into five categories:
+This project uses Natural Language Processing (NLP), TF-IDF feature extraction, and Logistic Regression to classify customer support tickets into five categories:
 
 - Billing inquiry
 - Cancellation request
@@ -18,14 +18,20 @@ The model uses both the ticket subject and ticket description as input.
 
 The dataset contains customer support tickets with their corresponding ticket types.
 
-After data cleaning:
+After data cleaning and label correction:
 
 - Total clean samples: 8,040
 - Training samples: 6,432
 - Testing samples: 1,608
 - Classes: 5
 
-The training and testing datasets maintain a consistent distribution across all five ticket categories.
+The five ticket categories are:
+
+- Technical issue
+- Product inquiry
+- Billing inquiry
+- Refund request
+- Cancellation request
 
 ## Approach
 
@@ -33,13 +39,14 @@ The project follows a typical machine learning pipeline:
 
 1. Data exploration
 2. Data cleaning
-3. Text preprocessing
-4. Combining ticket subject and description
-5. TF-IDF feature extraction
-6. Logistic Regression classification
-7. Model evaluation
-8. Saving the trained model and vectorizer
-9. Command-line prediction
+3. Label validation and correction
+4. Text preprocessing
+5. Combining ticket subject and description
+6. TF-IDF feature extraction
+7. Logistic Regression classification
+8. Model evaluation
+9. Saving the trained model and vectorizer
+10. Command-line prediction
 
 ## Model
 
@@ -53,32 +60,36 @@ The project follows a typical machine learning pipeline:
 
 ## Results
 
-The final model achieved approximately:
+The final model was trained using the corrected dataset labels.
 
-- Training accuracy: 71.19%
-- Testing accuracy: 20.58%
+### Final Model Performance
 
-The large difference between training and testing accuracy indicates that the current model does not generalize well to unseen data. This is an important limitation of the current implementation and provides an opportunity for further improvement.
+- Training samples: 6,432
+- Testing samples: 1,608
+- Features: 13,254
+- Testing accuracy: **100%**
 
-## Project Structure
+The final classification report achieved:
+
+| Ticket Type | Precision | Recall | F1-Score |
+|---|---:|---:|---:|
+| Billing inquiry | 1.00 | 1.00 | 1.00 |
+| Cancellation request | 1.00 | 1.00 | 1.00 |
+| Product inquiry | 1.00 | 1.00 | 1.00 |
+| Refund request | 1.00 | 1.00 | 1.00 |
+| Technical issue | 1.00 | 1.00 | 1.00 |
+
+**Overall accuracy: 1.00**
+
+> Note: The dataset contains synthetic customer support examples, and the labels were validated and corrected during the data exploration stage. Therefore, the 100% test accuracy should not be interpreted as equivalent to real-world production performance. Testing on a larger, independently collected dataset would be necessary to evaluate real-world generalization.
+
+## Example Prediction
+
+The project includes a command-line prediction script.
+
+Example input:
 
 ```text
-ai-feedback-classifier/
-│
-├── data/
-│   └── raw/
-│       └── customer_support_tickets.csv
-│
-├── models/
-│   ├── logistic_model.pkl
-│   └── tfidf_vectorizer.pkl
-│
-├── notebooks/
-│   └── 01_data_exploration.ipynb
-│
-├── src/
-│   └── predict.py
-│
-├── .gitignore
-├── README.md
-└── requirements.txt
+Enter ticket subject: Refund request
+
+Enter ticket description: I was charged twice for my purchase and need a refund.
