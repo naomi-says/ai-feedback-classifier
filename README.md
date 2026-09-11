@@ -62,22 +62,19 @@ The project follows a typical machine learning pipeline:
 
 The final model was trained using the corrected dataset labels.
 
-### Final Model Performance
+## Results
+
+The final model achieved 100% accuracy on the held-out test set.
 
 - Training samples: 6,432
 - Testing samples: 1,608
-- Features: 13,254
-- Testing accuracy: **100%**
+- Features: 10,000
+- Testing accuracy: 100%
 
-The final classification report achieved:
+The dataset used in this project is synthetic, and the ticket labels were corrected during the data exploration stage using the ticket subject and text patterns. Therefore, the 100% test accuracy should not be interpreted as equivalent to real-world production performance.
 
-| Ticket Type | Precision | Recall | F1-Score |
-|---|---:|---:|---:|
-| Billing inquiry | 1.00 | 1.00 | 1.00 |
-| Cancellation request | 1.00 | 1.00 | 1.00 |
-| Product inquiry | 1.00 | 1.00 | 1.00 |
-| Refund request | 1.00 | 1.00 | 1.00 |
-| Technical issue | 1.00 | 1.00 | 1.00 |
+Further evaluation on a larger, independently collected dataset would be necessary to measure real-world generalization.
+
 
 **Overall accuracy: 1.00**
 
