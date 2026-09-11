@@ -1,10 +1,10 @@
-# AI Feedback Classifier
+# AI Customer Support Ticket Classifier
 
-An NLP-based customer support ticket classifier that automatically categorizes customer feedback into different support categories.
+I built this project to understand how NLP and machine learning can be used to automatically categorize customer support tickets.
 
-## Overview
+The user enters a ticket subject and description, and the application predicts what type of support request it is.
 
-This project uses Natural Language Processing (NLP), TF-IDF feature extraction, and Logistic Regression to classify customer support tickets into five categories:
+The five categories are:
 
 - Billing inquiry
 - Cancellation request
@@ -12,81 +12,78 @@ This project uses Natural Language Processing (NLP), TF-IDF feature extraction, 
 - Refund request
 - Technical issue
 
-The model uses both the ticket subject and ticket description as input.
+## Live Demo
 
-## Dataset
+https://ai-feedback-classifier.onrender.com/app/
 
-The dataset contains customer support tickets with their corresponding ticket types.
+## What I used
 
-After data cleaning and label correction:
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- TF-IDF
+- Logistic Regression
+- FastAPI
+- HTML, CSS and JavaScript
+- GitHub
+- Render
 
-- Total clean samples: 8,040
-- Training samples: 6,432
-- Testing samples: 1,608
-- Classes: 5
+## How it works
 
-The five ticket categories are:
+The ticket subject and description are combined and cleaned before being converted into numerical features using TF-IDF.
 
-- Technical issue
-- Product inquiry
-- Billing inquiry
-- Refund request
-- Cancellation request
+A Logistic Regression model then uses those features to predict the ticket category.
 
-## Approach
+I saved the trained model and TF-IDF vectorizer using joblib and connected them to a FastAPI backend.
 
-The project follows a typical machine learning pipeline:
-
-1. Data exploration
-2. Data cleaning
-3. Label validation and correction
-4. Text preprocessing
-5. Combining ticket subject and description
-6. TF-IDF feature extraction
-7. Logistic Regression classification
-8. Model evaluation
-9. Saving the trained model and vectorizer
-10. Command-line prediction
+The frontend sends the ticket to the API and displays the prediction, confidence, and probability for each category.
 
 ## Model
 
-**Algorithm:** Logistic Regression
+The final model achieved 100% accuracy on the test set.
 
-**Text Vectorization:** TF-IDF
+- Training data: 6,432 tickets
+- Test data: 1,608 tickets
+- Total cleaned data: 8,040 tickets
 
-**Input:** Ticket Subject + Ticket Description
+### Important note
 
-**Output:** Predicted Ticket Type
+The dataset is synthetic. During the project, I found that some of the original labels did not match the ticket subjects, so I analyzed and corrected the labels before training the final model.
 
-## Results
+Because of this, the 100% accuracy should not be considered real-world performance. A real customer support dataset would be needed for a proper evaluation.
 
-The final model was trained using the corrected dataset labels.
-
-## Results
-
-The final model achieved 100% accuracy on the held-out test set.
-
-- Training samples: 6,432
-- Testing samples: 1,608
-- Features: 10,000
-- Testing accuracy: 100%
-
-The dataset used in this project is synthetic, and the ticket labels were corrected during the data exploration stage using the ticket subject and text patterns. Therefore, the 100% test accuracy should not be interpreted as equivalent to real-world production performance.
-
-Further evaluation on a larger, independently collected dataset would be necessary to measure real-world generalization.
-
-
-**Overall accuracy: 1.00**
-
-> Note: The dataset contains synthetic customer support examples, and the labels were validated and corrected during the data exploration stage. Therefore, the 100% test accuracy should not be interpreted as equivalent to real-world production performance. Testing on a larger, independently collected dataset would be necessary to evaluate real-world generalization.
-
-## Example Prediction
-
-The project includes a command-line prediction script.
-
-Example input:
+## Project Structure
 
 ```text
-Enter ticket subject: Refund request
+ai-feedback-classifier/
+├── data/
+├── models/
+├── notebooks/
+├── src/
+│   ├── api.py
+│   └── predict.py
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+├── .gitignore
+├── .python-version
+├── README.md
+└── requirements.txt
 
-Enter ticket description: I was charged twice for my purchase and need a refund.
+What I learned:Through this project I worked with:
+
+Cleaning and exploring a real-world-style dataset
+Text preprocessing
+TF-IDF
+Text classification
+Model evaluation
+Building a FastAPI API
+Connecting a frontend to an ML model
+Deploying a Python application using Render
+Future Improvements
+
+I would like to test the model on a real customer support dataset, improve the confidence scores, and eventually try more advanced NLP models.
+
+Author:Naomi Dsouza
