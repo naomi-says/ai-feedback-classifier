@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Ticket Classifier</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>AI Customer Support Ticket Classifier</h1>
+        <p>Enter a customer support ticket to predict its category.</p>
+
+        <label for="subject">Ticket Subject</label>
+        <input
+            type="text"
+            id="subject"
+            placeholder="e.g. Refund request"
+        >
+
+        <label for="description">Ticket Description</label>
+        <textarea
+            id="description"
+            placeholder="Describe the customer's issue..."
+        ></textarea>
+
+        <button onclick="predictTicket()">Predict Ticket Type</button>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
