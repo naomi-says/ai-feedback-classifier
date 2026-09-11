@@ -1,4 +1,3 @@
-
 async function predictTicket() {
     const subject = document.getElementById("subject").value;
     const description = document.getElementById("description").value;
@@ -25,9 +24,36 @@ async function predictTicket() {
 
         const data = await response.json();
 
+        let probabilitiesHTML = "";
+
+        for (const [category, probability] of Object.entries(data.class_probabilities)) {
+            probabilitiesHTML += `
+                <div class="probability">
+                    <div class="probability-label">
+                        <span>${category}</span>
+                        <span>${(probability * 100).toFixed(2)}%</span>
+                    </div>
+
+                    <div class="bar">
+                        <div class="bar-fill" style="width: ${probability * 100}%"></div>
+                    </div>
+                </div>
+            `;
+        }
+
         result.innerHTML = `
-            Predicted Type: ${data.predicted_ticket_type}<br>
-            Confidence: ${(data.confidence * 100).toFixed(2)}%
+            <div class="prediction">
+                <strong>Predicted Type</strong>
+                <span>${data.predicted_ticket_type}</span>
+            </div>
+
+            <div class="confidence">
+                Confidence: ${(data.confidence * 100).toFixed(2)}%
+            </div>
+
+            <h3>Category Probabilities</h3>
+
+            ${probabilitiesHTML}
         `;
 
     } catch (error) {
